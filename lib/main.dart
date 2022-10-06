@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:test_login/sl/sl.dart';
 
 void main() {
+  configureDependencies();
   runApp(const MyApp());
 }
 
