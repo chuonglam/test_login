@@ -15,6 +15,6 @@ class DefaultError extends AppError {
   DefaultError({super.message = 'Something went wrong'});
 }
 
-class LoginFailed extends AppError {
-  LoginFailed({super.message = 'Login failed'});
+class InvalidLoginCredentials extends AppError {
+  InvalidLoginCredentials({super.message = 'Invalid login credentials'});
 }
