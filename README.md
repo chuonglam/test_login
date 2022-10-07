@@ -38,6 +38,13 @@ or watch command in order to keep the source code synced automatically:
 flutter packages pub run build_runner watch
 ```
 
+**Note:** 
+Credentials for testing app:
+
+``` 
+username: hello@example.com
+password: 123456
+```
 ## Total Efforts: 10 hrs
 
 * Initiate project's structure, module and service locator: 1 hr
