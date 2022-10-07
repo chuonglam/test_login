@@ -24,8 +24,7 @@ class AuthRepositoryImpl implements AuthRepository {
       if (response.statusCode == 401) {
         return AppResult.error(InvalidLoginCredentials());
       }
-      return AppResult.error(
-          DefaultError(message: '${response.statusCode} error'));
+      return AppResult.error(DefaultError('${response.statusCode} error'));
     } on SocketException catch (_) {
       return AppResult.error(NoInternetConnectionError());
     } catch (e) {
