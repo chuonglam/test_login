@@ -1,12 +1,17 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:test_login/ui/common/ext.dart';
+import 'package:provider/provider.dart';
 import 'package:test_login/ui/common/gaps.dart';
+import 'package:test_login/ui/login/login_vm.dart';
 
 class LoginForm extends StatelessWidget {
-  final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
   LoginForm({Key? key}) : super(key: key);
+
+  final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
+
   @override
   Widget build(BuildContext context) {
+    final LoginVM viewModel = context.read<LoginVM>();
     return SingleChildScrollView(
       child: Center(
         child: Container(
@@ -23,12 +28,8 @@ class LoginForm extends StatelessWidget {
                     border: OutlineInputBorder(),
                   ),
                   textInputAction: TextInputAction.next,
-                  validator: (text) {
-                    if (text?.isValidEmail == true) {
-                      return null;
-                    }
-                    return 'Email must be valid';
-                  },
+                  validator: viewModel.validateEmail,
+                  onSaved: (value) => viewModel.updateInput(email: value),
                 ),
                 Gaps.vGap16,
                 TextFormField(
@@ -38,17 +39,21 @@ class LoginForm extends StatelessWidget {
                   ),
                   obscureText: true,
                   textInputAction: TextInputAction.done,
-                  validator: (text) {
-                    if (text?.isValidPassword == true) {
-                      return null;
-                    }
-                    return 'Password length must be at least 6 characters long';
-                  },
+                  validator: viewModel.validatePassword,
+                  onSaved: (value) => viewModel.updateInput(password: value),
                 ),
                 Gaps.vGap16,
-                ElevatedButton(
-                  onPressed: _onTapLogin,
-                  child: const Text("Login"),
+                Builder(
+                  builder: (ctx) {
+                    return ElevatedButton(
+                      onPressed: () {
+                        _onTapLogin(viewModel);
+                      },
+                      child: ctx.select<LoginVM, bool>((vm) => vm.data.loading)
+                          ? const CupertinoActivityIndicator()
+                          : const Text("Login"),
+                    );
+                  },
                 ),
               ],
             ),
@@ -58,9 +63,13 @@ class LoginForm extends StatelessWidget {
     );
   }
 
-  void _onTapLogin() {
+  void _onTapLogin(LoginVM viewModel) {
+    if (viewModel.data.loading) {
+      return;
+    }
     if (_formKey.currentState?.validate() == true) {
-      //todo: call login
+      _formKey.currentState?.save();
+      viewModel.login();
     }
   }
 }
