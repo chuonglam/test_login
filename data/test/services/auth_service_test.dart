@@ -4,6 +4,8 @@ import 'package:data/src/responses/api_response.dart';
 import 'package:data/src/services/auth_service.dart';
 import 'package:flutter_test/flutter_test.dart';
 
+import '../constants.dart';
+
 void main() {
   group(
     'AuthService',
@@ -19,9 +21,8 @@ void main() {
           test(
             'success when credentials are valid',
             () async {
-              const String email = 'hello@example.com';
-              const String password = '123456';
-              final res = await authService.login(email, password);
+              final res = await authService.login(
+                  TestConstants.email, TestConstants.password);
               expect(
                   res,
                   isA<ApiResponse<UserModel>>()
