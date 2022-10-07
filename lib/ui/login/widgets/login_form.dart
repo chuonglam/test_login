@@ -1,7 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import 'package:test_login/ui/common/gaps.dart';
+import 'package:test_login/common/gaps.dart';
 import 'package:test_login/ui/login/login_vm.dart';
 
 class LoginForm extends StatelessWidget {

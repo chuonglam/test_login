@@ -1,7 +1,7 @@
 import 'package:data/data.dart';
 import 'package:injectable/injectable.dart';
-import 'package:test_login/ui/common/ext.dart';
-import 'package:test_login/ui/common/vm/view_model.dart';
+import 'package:test_login/common/ext.dart';
+import 'package:test_login/common/vm/view_model.dart';
 import 'package:test_login/ui/login/login_data.dart';
 
 @Injectable()

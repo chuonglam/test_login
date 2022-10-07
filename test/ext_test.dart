@@ -1,5 +1,5 @@
 import 'package:flutter_test/flutter_test.dart';
-import 'package:test_login/ui/common/ext.dart';
+import 'package:test_login/common/ext.dart';
 
 void main() {
   group(
