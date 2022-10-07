@@ -27,8 +27,10 @@ class AuthRepositoryImpl implements AuthRepository {
       return AppResult.error(DefaultError('${response.statusCode} error'));
     } on SocketException catch (_) {
       return AppResult.error(NoInternetConnectionError());
+    } on AppError catch (e) {
+      return AppResult.error(e);
     } catch (e) {
-      return AppResult.error(DefaultError());
+      return AppResult.error(DefaultError(e.toString()));
     }
   }
 }
