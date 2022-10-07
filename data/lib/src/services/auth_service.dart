@@ -5,6 +5,7 @@ import 'package:injectable/injectable.dart';
 @Singleton()
 class AuthService {
   Future<ApiResponse<UserModel>> login(String email, String password) async {
+    await Future.delayed(const Duration(seconds: 2));
     if (email == 'hello@example.com' && password == '123456') {
       return ApiResponse(
         statusCode: 200,
