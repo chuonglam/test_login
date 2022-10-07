@@ -22,6 +22,7 @@ class LoginForm extends StatelessWidget {
             child: Column(
               children: [
                 TextFormField(
+                  key: const ValueKey("email"),
                   decoration: const InputDecoration(
                     hintText: 'Email',
                     prefixIcon: Icon(Icons.email),
@@ -29,10 +30,12 @@ class LoginForm extends StatelessWidget {
                   ),
                   textInputAction: TextInputAction.next,
                   validator: viewModel.validateEmail,
-                  onSaved: (value) => viewModel.updateInput(email: value),
+                  onSaved: (value) =>
+                      viewModel.updateInput(email: value?.trim()),
                 ),
                 Gaps.vGap16,
                 TextFormField(
+                  key: const ValueKey("password"),
                   decoration: const InputDecoration(
                     hintText: 'Password',
                     prefixIcon: Icon(Icons.password),
@@ -46,6 +49,7 @@ class LoginForm extends StatelessWidget {
                 Builder(
                   builder: (ctx) {
                     return ElevatedButton(
+                      key: const ValueKey("loginButton"),
                       onPressed: () {
                         _onTapLogin(viewModel);
                       },

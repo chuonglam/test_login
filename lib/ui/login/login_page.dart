@@ -27,7 +27,7 @@ class _LoginPageState extends State<LoginPage> {
       context: context,
       builder: (ctx) {
         return AlertDialog(
-          content: Text('"${_loginVM.data.message}"'),
+          content: Text(_loginVM.data.message),
         );
       },
     );
